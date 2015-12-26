@@ -53,7 +53,7 @@ module Bundler
 
     # Exceptions classes that should bypass retry attempts. If your password didn't work the
     # first time, it's not going to the third time.
-    FAIL_ERRORS = [AuthenticationRequiredError, BadAuthenticationError, FallbackError]
+    FAIL_ERRORS = [AuthenticationRequiredError, BadAuthenticationError, FallbackError, Gem::Requirement::BadRequirementError]
 
     class << self
       attr_accessor :disable_endpoint, :api_timeout, :redirect_limit, :max_retries
