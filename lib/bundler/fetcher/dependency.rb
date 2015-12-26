@@ -57,7 +57,7 @@ module Bundler
 
         gem_list.each do |s|
           deps_list.push(*s[:dependencies].map(&:first))
-          deps = s[:dependencies].map{|n, d| [n, d.split(", ")] }
+          deps = s[:dependencies].map {|n, d| [n, d.split(", ")] }
           spec_list.push([s[:name], s[:number], s[:platform], deps])
         end
 
@@ -69,7 +69,6 @@ module Bundler
         uri.query = "gems=#{CGI.escape(gem_names.join(","))}" if gem_names.any?
         uri
       end
-
     end
   end
 end
