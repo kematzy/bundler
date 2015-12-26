@@ -908,7 +908,7 @@ describe "Bundler.setup" do
             rack (1.0.0)
 
         PLATFORMS
-          #{generic(Gem::Platform.local)}
+          #{generic_local_platform}
 
         DEPENDENCIES
           rack
@@ -952,6 +952,21 @@ describe "Bundler.setup" do
         ruby "require 'bundler/setup'"
         lockfile_should_be lock_with("1.10.1")
       end
+    end
+  end
+
+  describe "when Psych is not in the Gemfile", :ruby => "~> 2.2" do
+    it "does not load Psych" do
+      gemfile ""
+      ruby <<-RUBY
+        require 'bundler/setup'
+        puts defined?(Psych::VERSION) ? Psych::VERSION : "undefined"
+        require 'psych'
+        puts Psych::VERSION
+      RUBY
+      pre_bundler, post_bundler = out.split("\n")
+      expect(pre_bundler).to eq("undefined")
+      expect(post_bundler).to match(/\d+\.\d+\.\d+/)
     end
   end
 end
