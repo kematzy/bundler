@@ -13,8 +13,8 @@ module Spec
       unless File.exist?("#{Path.base_system_gems}")
         FileUtils.mkdir_p(Path.base_system_gems)
         puts "installing gems for the tests to use..."
-        %w(fakeweb artifice rack).each {|n| install_gem(n) }
         {
+          "rack fakeweb artifice compact_index" => nil,
           "sinatra" => "1.2.7",
           # Rake version has to be consistent for tests to pass
           "rake" => "10.0.2",
@@ -23,7 +23,6 @@ module Spec
         }.each {|n, v| install_gem(n, v) }
         # ruby-graphviz is used by the viz tests
         install_gem("ruby-graphviz") if RUBY_VERSION >= "1.9.3"
-        `gem install compact_index --no-rdoc --no-ri`
       end
 
       ENV["HOME"] = Path.home.to_s
