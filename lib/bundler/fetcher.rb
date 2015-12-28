@@ -55,11 +55,11 @@ module Bundler
     # first time, it's not going to the third time.
     FAIL_ERRORS = [
       AuthenticationRequiredError, BadAuthenticationError, FallbackError,
-      Gem::Requirement::BadRequirementError, Net::HTTPBadGateway,
-      Net::HTTPBadRequest, Net::HTTPForbidden, Net::HTTPMethodNotAllowed,
-      Net::HTTPMovedPermanently, Net::HTTPNotImplemented, Net::HTTPNotFound,
-      Net::HTTPRequestEntityTooLarge, Net::HTTPNoContent
+      Net::HTTPBadGateway, Net::HTTPBadRequest, Net::HTTPForbidden,
+      Net::HTTPMethodNotAllowed, Net::HTTPMovedPermanently, Net::HTTPNotImplemented,
+      Net::HTTPNotFound, Net::HTTPRequestEntityTooLarge, Net::HTTPNoContent
     ]
+    FAIL_ERRORS << Gem::Requirement::BadRequirementError if defined?(Gem::Requirement::BadRequirementError)
 
     class << self
       attr_accessor :disable_endpoint, :api_timeout, :redirect_limit, :max_retries
