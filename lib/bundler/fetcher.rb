@@ -54,7 +54,7 @@ module Bundler
     # Exceptions classes that should bypass retry attempts. If your password didn't work the
     # first time, it's not going to the third time.
     FAIL_ERRORS = [
-      AuthenticationRequiredError, BadAuthenticationError, FallbackError,
+      ArgumentError, AuthenticationRequiredError, BadAuthenticationError, FallbackError,
       Net::HTTPBadGateway, Net::HTTPBadRequest, Net::HTTPForbidden,
       Net::HTTPMethodNotAllowed, Net::HTTPMovedPermanently, Net::HTTPNotImplemented,
       Net::HTTPNotFound, Net::HTTPRequestEntityTooLarge, Net::HTTPNoContent
